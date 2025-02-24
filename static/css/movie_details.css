@@ -1,0 +1,138 @@
+/* Movie Details Container */
+.movie-details-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    margin-top: 80px;
+}
+
+.movie-details-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: yellow;
+    text-align: center;
+}
+
+.movie-details-content {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.movie-details-container img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.movie-details-info {
+    flex: 1;
+}
+
+.movie-details-info p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.movie-details-info strong {
+    color: yellow;
+    font-weight: bold;
+}
+
+/* Rating Section */
+.rating-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.rating-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: yellow;
+}
+
+.rating-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-section label {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.rating-section input {
+    width: 100px;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.rating-section button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rating-section button:hover {
+    background-color: #ffcc00;
+}
+
+.average-rating {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .movie-details-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-details-container img {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .movie-details-info {
+        text-align: center;
+    }
+
+    .movie-details-container h1 {
+        font-size: 2rem;
+    }
+
+    .movie-details-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-details-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .movie-details-info p {
+        font-size: 0.9rem;
+    }
+}

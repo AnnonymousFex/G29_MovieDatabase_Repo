@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.Title }} - Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/anime.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/movie_details.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Footer Styles */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .footer-section {
+            margin: 10px;
+        }
+        .footer-links a, .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .social-icons a:hover {
+            color: #f39c12;
+        }
+        .copyright {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #bb86fc;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="{{ url_for('home') }}" class="logo">MovieDB</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <!-- <li><a href="#">Dashboard</a></li> -->
+                <li><a href="{{ url_for('contact') }}">About</a></li>
+                <li class="mobile-auth-links">
+                    {% if current_user.is_authenticated %}
+                        <a href="#">{{ current_user.username }}</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="#">Sign Up</a>
+                        <a href="#">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="movie-details-container">
+        <h1>{{ movie.Title }}</h1>
+        <div class="movie-details-content">
+            <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+            <div class="movie-details-info">
+                <p><strong>Year:</strong> {{ movie.Year }}</p>
+                <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+                <p><strong>IMDB Rating:</strong> ⭐ {{ movie.imdbRating }}</p>
+                <p><strong>Director:</strong> {{ movie.Director }}</p>
+                <p><strong>Actors:</strong> {{ movie.Actors }}</p>
+                <p><strong>Runtime:</strong> {{ movie.Runtime }}</p>
+                <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+                <p><strong>Rotten Tomatoes:</strong> {{ movie.RottenTomatoes }}</p>
+                <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+                <p><strong>Language:</strong> {{ movie.Language }}</p>
+                <p><strong>Country:</strong> {{ movie.Country }}</p>
+                <p><strong>Awards:</strong> {{ movie.Awards }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="rating-section">
+        <h2>Rate this Movie</h2>
+        <form id="rating-form" method="POST" action="{{ url_for('rate_movie', title=movie.Title) }}">
+            <label for="rating">Rating (0-10):</label>
+            <input type="number" id="rating" name="rating" min="0" max="10" required>
+            <button type="submit">Submit Rating</button>
+        </form>
+        <div class="average-rating">
+            <h3>Average Rating: {{ average_rating | default('No ratings yet') }}</h3>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section footer-links">
+                <a href="{{ url_for('contact') }}">About</a>
+                <!-- <a href="#">Contact</a> -->
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-section social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 My Movie App. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Add any necessary JavaScript here
+    </script>
+</body>
+</html>

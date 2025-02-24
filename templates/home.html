@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar with Video Background</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/anime.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/movie_details.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Gochi+Hand&family=Julee&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Passero+One&family=Protest+Revolution&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+        /* Footer Styles */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .footer-section {
+            margin: 10px;
+        }
+        .footer-links a, .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .social-icons a:hover {
+            color: #f39c12;
+        }
+        .copyright {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #bb86fc;
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Video Background Section -->
+    <!-- <div class="video-section"> -->
+        <!-- <video autoplay muted loop id="video-bg">
+            <source src="../static/videos/Untitled video - Made with Clipchamp.mp4" type="video/mp4">
+        </video> -->
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <a href="{{ url_for('home') }}" class="logo">MovieDB</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url_for('contact') }}">About</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon" id="search-icon"></i>
+                        <input type="text" class="search-bar" id="search-bar" placeholder="Search...">
+                    </div>
+            
+                    <div class="dropdown">
+                        {% if current_user.is_authenticated %}
+                            <a href="#" class="dropbtn">
+                                <img src="{{ url_for('static', filename='images/pfp.jpg') }}" alt="User  Profile Picture" class="user-icon">
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('profile') }}">Profile ({{ current_user.name }})</a>
+                                <a href="{{ url_for('logout') }}">Logout</a>
+                            </div>
+                        {% else %}
+                            <a href="#" class="dropbtn">
+                                <img src="{{ url_for('static', filename='images/pfp.jpg') }}" alt="User  Profile Picture" class="user-icon">
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('signup') }}">Sign Up</a>
+                                <a href="{{ url_for('login') }}">Login</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </header>
+        
+        
+    <div id="search-results" class="search-results-container"></div>
+
+
+
+
+
+
+<!-- ==================================================================================================== -->
+<!-- Carousel wrapper -->
+    <!-- Video Carousel -->
+    <div id="carouselVideoExample" class="carousel">
+      <div class="carousel-inner">
+          <!-- Carousel Item 1 -->
+          <div class="carousel-item active">
+              <div id="carousel-details">
+                  <h1 id="carousel-heading" style="font-family: Passero One, serif;">FATE/STAY NIGHT</h1>
+                  <p id="carousel-heading-2">Original title: Gekijouban Fate/Stay Night: Heaven's Feel - III. Spring Song</p>
+                  <p id="carousel-heading-3">2020 | TV-MA | 2h</p>
+                  <p id="carousel-heading-4"> iMDb RATING  - <span style="color: yellow;" class="fa fa-star checked"> </span> 7.9 </p>
+                  <p id="carousel-heading-5"><button>Adult Animation</button>  <button>Anime</button>  <button>Adventure</button>  <button>Drama</button> <button>Romance</button></p>
+                  <p id="carousel-heading-6">The final chapter in the Heaven's Feel trilogy. Angra Mainyu has successfully possessed his vessel Sakura Matou. It's up to Rin, Shirou, and Rider to cleanse the grail or it will be the end of the world and magecraft as we all know it.</p>
+              </div>
+              <video class="img-fluid" autoplay loop muted>
+                  <source src="{{ url_for('serve_video', filename='carousel3.mp4') }}" type="video/mp4">
+              </video>
+          </div>
+
+          <!-- Carousel Item 2 -->
+          <div class="carousel-item">
+              <div id="carousel-details">
+                  <h1 id="carousel-heading" style="font-family: Passero One, serif;">Dragon Ball Super: Broly</h1>
+                  <p id="carousel-heading-2">Original title: Doragon Bôru Sûpâ Burorî</p>
+                  <p id="carousel-heading-3">2018 | PG1h | 40m</p>
+                  <p id="carousel-heading-4"> iMDb RATING  - <span style="color: yellow;" class="fa fa-star checked"> </span> 7.7 </p>
+                  <p id="carousel-heading-5"><button>Adult Animation</button>  <button>Anime</button>  <button>Adventure</button>  <button>Drama</button> <button>Romance</button></p>
+                  <p id="carousel-heading-6"> A banished Saiyan, a ruthless warlord, and an unstoppable battle—Broly’s fury is unleashed against Goku and Vegeta, shaking reality itself. As Gogeta rises to end the chaos, a fateful wish spares Broly. But the story isn’t over—Goku has found a new rival..</p>
+              </div>
+              <video class="img-fluid" autoplay loop muted>
+                  <source src="{{ url_for('serve_video', filename='Gogeta vs Broly 8K.mp4') }}" type="video/mp4">
+              </video>
+          </div>
+          
+          <div class="carousel-item">
+            <div id="carousel-details">
+              <h1 id="carousel-heading" style="font-family: Passero One, serif;">Breaking Bad</h1>
+              <p id="carousel-heading-2">Original title: Breaking Bad</p>
+              <p id="carousel-heading-3">2008 - 2003 | TV-MA | 45m Per Ep.</p>
+              <p id="carousel-heading-4"> iMDb RATING  - <span style="color: yellow;" class="fa fa-star checked"> </span> 9.5 </p>
+              <p id="carousel-heading-5"><button>Drug Crime</button>  <button>Tragedy</button>  <button>Thiller</button>  <button>Drama</button> <button>Crime</button></p>
+              <p id="carousel-heading-6">A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student to secure his family's future.</p>
+          </div>
+            <video class="img-fluid" autoplay loop muted>
+              <source src="{{ url_for('serve_video', filename='saymyname.mp4') }}" type="video/mp4" />
+            </video>
+          </div>
+          <!-- Carousel Item 3 -->
+          <div class="carousel-item">
+              <div id="carousel-details">
+                  <h1 id="carousel-heading" style="font-family: Passero One, serif;">One Piece</h1>
+                  <p id="carousel-heading-2">Original title: One Piece</p>
+                  <p id="carousel-heading-3">1999 | TV-14 | 24m Per Ep.</p>
+                  <p id="carousel-heading-4"> iMDb RATING  - <span style="color: yellow;" class="fa fa-star checked"> </span> 9.0 </p>
+                  <p id="carousel-heading-5"><button>Adult Animation</button>  <button>Anime</button>  <button>Adventure</button>  <button>Drama</button> </p>
+                  <p id="carousel-heading-6">Monkey D. Luffy sets off on an adventure with his pirate crew in hopes of finding the greatest treasure ever, known as the "One Piece."</p>
+              </div>
+              <video class="img-fluid" autoplay loop muted>
+                  <source src="{{ url_for('serve_video', filename='carousel1.mp4') }}" type="video/mp4">
+              </video>
+          </div>
+
+    
+          <div class="carousel-item">
+            <div id="carousel-details">
+              <h1 id="carousel-heading" style="font-family: Passero One, serif;">Interstellar</h1>
+              <p id="carousel-heading-2">Original title: Breaking Bad</p>
+              <p id="carousel-heading-3">2014 | PG-14 | 2h 49m.</p>
+              <p id="carousel-heading-4"> iMDb RATING  - <span style="color: yellow;" class="fa fa-star checked"> </span> 8.7 </p>
+              <p id="carousel-heading-5"><button>Adventure</button>  <button>Quest</button>  <button>Time-Travel</button>  <button>Space</button> <button>Sci-Fi</button></p>
+              <p id="carousel-heading-6">When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.</p>
+          </div>
+            <video class="img-fluid" autoplay loop muted>
+              <source src="{{ url_for('serve_video', filename='intersteller.mp4') }}" type="video/mp4" />
+            </video>
+          </div>
+    
+
+          <!-- Add more carousel items as needed -->
+      </div>
+    <!-- Navigation arrows with icons -->
+    <button class="carousel-control-prev" onclick="prevSlide()">
+      <i class="fas fa-chevron-left"></i> <!-- Font Awesome arrow icon -->
+    </button>
+    <button class="carousel-control-next" onclick="nextSlide()">
+      <i class="fas fa-chevron-right"></i> <!-- Font Awesome arrow icon -->
+    </button>
+  </div>
+  <br>
+
+
+<!-- ==================================================================================== -->
+<!-- First Container -->
+<div id="big-movie-container-1">
+    <div id="movies-containers-heading1">
+        <h3 style="color: white; font-size: 30px;"><span style="color: yellow; font-weight: bolder;">|</span>Top Picks</h3>
+    </div>
+    <div class="movie-carousel">
+        <button id="left-arrow-1" class="carousel-arrow">&#10094;</button>
+        <div class="movies-container">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <a href="{{ url_for('movie_details', title=movie.Title) }}">
+                    <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                </a>
+                <div class="movie-info">
+                    <h3>{{ movie.Title }}</h3>
+                    <p><strong>Year:</strong> {{ movie.Year }}</p>
+                    <p><strong>IMDB:</strong> ⭐ {{ movie.imdbRating }}</p>
+                    <p><strong>Runtime:</strong> {{ movie.Runtime }}</p>
+                    <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+                    <p><strong>Rotten Tomatoes:</strong> {{ movie.RottenTomatoes }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="right-arrow-1" class="carousel-arrow">&#10095;</button>
+    </div>
+</div>
+
+<!-- Second Container -->
+<div id="big-movie-container-2">
+    <div id="movies-containers-heading2">
+        <h3 style="color: white; font-size: 30px;"><span style="color: yellow; font-weight: bolder;">|</span>Anime</h3>
+    </div>
+
+    <div class="movie-carousel">
+        <button id="left-arrow-2" class="carousel-arrow">&#10094;</button>
+        <div class="movies-container">
+            {% for movie in anime_titles %}
+            <div class="movie-card">
+                <a href="{{ url_for('movie_details', title=movie.Title) }}">
+                    <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                </a>
+                <div class="movie-info">
+                    <h3>{{ movie.Title }}</h3>
+                    <p><strong>Year:</strong> {{ movie.Year }}</p>
+                    <p><strong>IMDB:</strong> ⭐ {{ movie.imdbRating }}</p>
+                    <p><strong>Runtime:</strong> {{ movie.Runtime }}</p>
+                    <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+                    <p><strong>Rotten Tomatoes:</strong> {{ movie.RottenTomatoes }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="right-arrow-2" class="carousel-arrow">&#10095;</button>
+    </div>
+</div>
+
+<!-- Third Container -->
+<div id="big-movie-container-3">
+    <div id="movies-containers-heading3">
+        <h3 style="color: white; font-size: 30px;"><span style="color: yellow; font-weight: bolder;">|</span>Popular Interest</h3>
+    </div>
+
+    <div class="movie-carousel">
+        <button id="left-arrow-3" class="carousel-arrow">&#10094;</button>
+        <div class="movies-container">
+            {% for movie in popular_interest %}
+            <div class="movie-card popular_card">
+                <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                <div class="movie-info">
+                    <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="right-arrow-3" class="carousel-arrow">&#10095;</button>
+    </div>
+</div>
+
+
+
+<!-- ==================================================================================== -->
+<!-- Video Carousel Container -->
+<div id="video-carousel-container">
+    <div id="video-carousel-heading">
+        <h3 style="color: white; font-size: 30px;">
+            <span style="color: yellow; font-weight: bolder;">|</span>Exclusive Videos
+        </h3>
+    </div>
+
+    <div class="video-carousel">
+        <!-- Left Arrow -->
+        <button id="left-arrow-video" class="carousel-arrow">&#10094;</button>
+
+        <!-- Videos Container -->
+        <div class="videos-container">
+            <!-- Video 1 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="{{ url_for('serve_video', filename='strangerboy.mp4') }}" type="video/mp4">
+                </video>
+                <div class="video-description">
+                    <p>The Dungeons & Dragons Classes Of Every Main Character In Stranger Things</p>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="{{ url_for('serve_video', filename='spiderman.mp4') }}" type="video/mp4">
+                </video>
+                <div class="video-description">
+                    <p>Your friendly neighbourhood Spiderman.  .. WoooP</p>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="{{ url_for('serve_video', filename='bullyboy.mp4') }}" type="video/mp4">
+                </video>
+                <div class="video-description">
+                    <p>If you want the shots, I'll take the staff job, double the money.</p>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-item">
+                <video controls>
+                    <source src="{{ url_for('serve_video', filename='chillguy.mp4') }}" type="video/mp4">
+                </video>
+                <div class="video-description">
+                    <p>It's a big house. It's weird I only ever see two of you. It's almost like the studio couldn't afford another X-Man.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Arrow -->
+        <button id="right-arrow-video" class="carousel-arrow">&#10095;</button>
+    </div>
+</div>
+
+<!-- =========================== -->
+ 
+<!-- Second Container -->
+<!-- Fan Favourites Container -->
+<div id="big-movie-container-2">
+    <div id="movies-containers-heading2">
+        <h3 style="color: white; font-size: 30px;"><span style="color: yellow; font-weight: bolder;">|</span>Fan Favourites</h3>
+    </div>
+
+    <div class="movie-carousel">
+        <button id="left-arrow-4" class="carousel-arrow">&#10094;</button>
+        <div class="movies-container">
+            {% for movie in movies_2 %}
+            <div class="movie-card">
+                <a href="{{ url_for('movie_details', title=movie.Title) }}">
+                    <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                </a>
+                <div class="movie-info">
+                    <h3>{{ movie.Title }}</h3>
+                    <p><strong>Year:</strong> {{ movie.Year }}</p>
+                    <p><strong>IMDB:</strong> ⭐ {{ movie.imdbRating }}</p>
+                    <p><strong>Runtime:</strong> {{ movie.Runtime }}</p>
+                    <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+                    <p><strong>Rotten Tomatoes:</strong> {{ movie.RottenTomatoes }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="right-arrow-4" class="carousel-arrow">&#10095;</button>
+    </div>
+</div>
+
+<!-- Explore What's Streaming Container -->
+<div id="big-movie-container-2">
+    <div id="movies-containers-heading2">
+        <h3 style="color: white; font-size: 30px;"><span style="color: yellow; font-weight: bolder;">|</span>Explore What's Streaming</h3>
+    </div>
+
+    <div class="movie-carousel">
+        <button id="left-arrow-5" class="carousel-arrow">&#10094;</button>
+        <div class="movies-container">
+            {% for movie in explore_streaming %}
+            <div class="movie-card">
+                <a href="{{ url_for('movie_details', title=movie.Title) }}">
+                    <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                </a>
+                <div class="movie-info">
+                    <h3>{{ movie.Title }}</h3>
+                    <p><strong>Year:</strong> {{ movie.Year }}</p>
+                    <p><strong>IMDB:</strong> ⭐ {{ movie.imdbRating }}</p>
+                    <p><strong>Runtime:</strong> {{ movie.Runtime }}</p>
+                    <p><strong>Box Office:</strong> {{ movie.BoxOffice }}</p>
+                    <p><strong>Rotten Tomatoes:</strong> {{ movie.RottenTomatoes }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button id="right-arrow-5" class="carousel-arrow">&#10095;</button>
+    </div>
+</div>
+
+
+
+  
+<!-- ===================================================================================== -->
+<script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const searchIcon = document.getElementById('search-icon');
+        const searchBar = document.getElementById('search-bar');
+
+        // Toggle mobile menu
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Toggle search bar
+        searchIcon.addEventListener('click', () => {
+            searchBar.classList.toggle('active');
+            if (searchBar.classList.contains('active')) {
+                searchBar.focus();
+            } else {
+                searchBar.value = '';
+            }
+        });
+
+
+        
+// Carousel Functionality
+const carouselItems = document.querySelectorAll('.carousel-item');
+let currentIndex = 0;
+
+// Function to show the current slide
+function showSlide(index) {
+  // Remove active, next, and prev classes from all items
+  carouselItems.forEach((item) => {
+    item.classList.remove('active', 'next', 'prev');
+  });
+
+  // Add classes for smooth transitions
+  carouselItems[currentIndex].classList.add('prev'); // Current slide moves out
+  carouselItems[index].classList.add('next'); // New slide moves in
+
+  // Wait for the transition to complete
+  setTimeout(() => {
+    carouselItems[currentIndex].classList.remove('prev');
+    carouselItems[index].classList.remove('next');
+    carouselItems[index].classList.add('active');
+    currentIndex = index;
+  }, 10); // Small delay to allow CSS to register the classes
+}
+
+// Function to go to the previous slide
+function prevSlide() {
+  const newIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+  showSlide(newIndex);
+}
+
+// Function to go to the next slide
+function nextSlide() {
+  const newIndex = (currentIndex + 1) % carouselItems.length;
+  showSlide(newIndex);
+}
+
+// Optional: Auto-play the carousel
+let autoPlayInterval;
+
+function startAutoPlay() {
+  autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+}
+
+function stopAutoPlay() {
+  clearInterval(autoPlayInterval);
+}
+
+// Start auto-play on page load
+startAutoPlay();
+
+// Pause auto-play when hovering over the carousel
+const carousel = document.getElementById('carouselVideoExample');
+carousel.addEventListener('mouseenter', stopAutoPlay);
+carousel.addEventListener('mouseleave', startAutoPlay);
+
+
+
+// movie carousel==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    // Debugging: Log to ensure the script is running
+    console.log("Script loaded");
+
+    // First container (Top Picks)
+    const container1 = document.querySelectorAll(".movies-container")[0];
+    const leftArrow1 = document.getElementById("left-arrow-1");
+    const rightArrow1 = document.getElementById("right-arrow-1");
+
+    if (container1 && leftArrow1 && rightArrow1) {
+        rightArrow1.addEventListener("click", function () {
+            console.log("Right arrow 1 clicked");
+            container1.scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        leftArrow1.addEventListener("click", function () {
+            console.log("Left arrow 1 clicked");
+            container1.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    } else {
+        console.error("First container or arrows not found");
+    }
+
+    // Second container (Anime)
+    const container2 = document.querySelectorAll(".movies-container")[1];
+    const leftArrow2 = document.getElementById("left-arrow-2");
+    const rightArrow2 = document.getElementById("right-arrow-2");
+
+    if (container2 && leftArrow2 && rightArrow2) {
+        rightArrow2.addEventListener("click", function () {
+            console.log("Right arrow 2 clicked");
+            container2.scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        leftArrow2.addEventListener("click", function () {
+            console.log("Left arrow 2 clicked");
+            container2.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    } else {
+        console.error("Second container or arrows not found");
+    }
+
+    // Third container (Popular Interest)
+    const container3 = document.querySelectorAll(".movies-container")[2];
+    const leftArrow3 = document.getElementById("left-arrow-3");
+    const rightArrow3 = document.getElementById("right-arrow-3");
+
+    if (container3 && leftArrow3 && rightArrow3) {
+        rightArrow3.addEventListener("click", function () {
+            console.log("Right arrow 3 clicked");
+            container3.scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        leftArrow3.addEventListener("click", function () {
+            console.log("Left arrow 3 clicked");
+            container3.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    } else {
+        console.error("Third container or arrows not found");
+    }
+
+    // Fourth container (Fan Favourites)
+    const container4 = document.querySelectorAll(".movies-container")[3];
+    const leftArrow4 = document.getElementById("left-arrow-4");
+    const rightArrow4 = document.getElementById("right-arrow-4");
+
+    if (container4 && leftArrow4 && rightArrow4) {
+        rightArrow4.addEventListener("click", function () {
+            console.log("Right arrow 4 clicked");
+            container4.scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        leftArrow4.addEventListener("click", function () {
+            console.log("Left arrow 4 clicked");
+            container4.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    } else {
+        console.error("Fourth container or arrows not found");
+    }
+
+    // Fifth container (Explore What's Streaming)
+    const container5 = document.querySelectorAll(".movies-container")[4];
+    const leftArrow5 = document.getElementById("left-arrow-5");
+    const rightArrow5 = document.getElementById("right-arrow-5");
+
+    if (container5 && leftArrow5 && rightArrow5) {
+        rightArrow5.addEventListener("click", function () {
+            console.log("Right arrow 5 clicked");
+            container5.scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        leftArrow5.addEventListener("click", function () {
+            console.log("Left arrow 5 clicked");
+            container5.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    } else {
+        console.error("Fifth container or arrows not found");
+    }
+});
+// ====================================
+document.addEventListener("DOMContentLoaded", function () {
+    // Debugging: Log to ensure the script is running
+    console.log("Script loaded");
+
+    // Video Carousel
+    const videosContainer = document.querySelector(".videos-container");
+    const leftArrowVideo = document.getElementById("left-arrow-video");
+    const rightArrowVideo = document.getElementById("right-arrow-video");
+
+    if (videosContainer && leftArrowVideo && rightArrowVideo) {
+        rightArrowVideo.addEventListener("click", function () {
+            console.log("Right arrow clicked");
+            videosContainer.scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        leftArrowVideo.addEventListener("click", function () {
+            console.log("Left arrow clicked");
+            videosContainer.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    } else {
+        console.error("Video container or arrows not found");
+    }
+});
+        
+// =====================Search bar================================
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBar = document.getElementById("search-bar");
+    const resultsContainer = document.getElementById("search-results");
+
+    if (!searchBar || !resultsContainer) {
+        console.error("Search elements not found!");
+        return;
+    }
+
+    searchBar.addEventListener("input", function (e) {
+        const query = e.target.value.trim();
+        if (query.length < 3) {
+            resultsContainer.innerHTML = ""; // Clear results if query is too short
+            resultsContainer.style.display = "none"; // Hide container
+            return;
+        }
+
+        // Fetch search results from Flask backend
+        fetch(`/search?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                if (data.length > 0) {
+                    data.forEach(movie => {
+                        const movieElement = document.createElement("a");
+                        movieElement.className = "search-result-item";
+                        movieElement.href = `/movie/${movie.Title}`; // Link to details page
+                        movieElement.innerHTML = `
+                            <img src="${movie.Poster}" alt="${movie.Title}">
+                            <div>
+                                <h3>${movie.Title}</h3>
+                                <p>${movie.Year}</p>
+                            </div>
+                        `;
+                        resultsContainer.appendChild(movieElement);
+                    });
+                    resultsContainer.style.display = "block"; // Show results
+                } else {
+                    resultsContainer.innerHTML = "<p>No results found.</p>";
+                    resultsContainer.style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching search results:", error);
+            });
+    });
+
+    searchBar.addEventListener("click", function (e) {
+        // Toggle results container only if there are results
+        if (resultsContainer.innerHTML.trim() !== "") {
+            resultsContainer.style.display =
+                resultsContainer.style.display === "block" ? "none" : "block";
+        }
+        e.stopPropagation(); // Prevent closing when clicking inside
+    });
+
+    // Hide results when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!searchBar.contains(e.target) && !resultsContainer.contains(e.target)) {
+            resultsContainer.style.display = "none";
+        }
+    });
+});
+
+</script>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section footer-links">
+            <a href="{{ url_for('contact') }}">About</a>
+            <!-- <a href="#">Contact</a> -->
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-section social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+    <p class="copyright">&copy; 2025 My Movie App. All rights reserved.</p>
+</footer>
+</body>
+</html>

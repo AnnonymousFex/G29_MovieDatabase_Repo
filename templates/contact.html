@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Movie Database</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background-color: #121212;
+}
+
+header {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    /* background-image: url("kk.jpg"); */
+    color: white;
+    text-align: center;
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.05;
+}
+
+header h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    position: relative;
+    color: #ffffff;
+}
+
+header p {
+    font-size: 1.5rem;
+    color: #b0b0b0;
+}
+
+.about-section {
+    background-color: #1e1e1e;
+    padding: 5rem;
+    border-radius: 24px;
+    margin: 57.4px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    max-width: 1400px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #333333;
+}
+
+.about-section h2 {
+    color: #bb86fc;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+    text-align: center;
+}
+
+.about-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, #bb86fc, #7c4dff);
+    border-radius: 3px;
+}
+
+.about-section p {
+    font-size: 1.25rem;
+    color: #b0b0b0;
+    line-height: 2;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.about-section header {
+    position: relative;
+    background: url('kk.jpg') center/cover no-repeat;
+    color: white; /* Ensures text is visible */
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.about-section header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better readability */
+    z-index: 1;
+}
+
+.about-section header h1,
+.about-section header p {
+    position: relative;
+    z-index: 2;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    background: #252525;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #333333;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background: #2a2a2a;
+    border-color: #bb86fc;
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: #bb86fc;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.feature p {
+    color: #b0b0b0;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Motive Section */
+.motive-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid #333333;
+}
+
+.motive-section h2 {
+    color: #bb86fc;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.motive-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.motive-item {
+    background: #252525;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #333333;
+}
+
+.motive-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: #bb86fc;
+}
+
+.motive-item i {
+    font-size: 2.5rem;
+    color: #bb86fc;
+    margin-bottom: 1.5rem;
+}
+
+.motive-item h3 {
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.motive-item p {
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+/* Team Section */
+.team-section {
+    background-color: #1e1e1e;
+    padding: 4rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333333;
+    margin-top: 4rem;
+}
+
+.team-section h2 {
+    color: #bb86fc;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.team-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #bb86fc, #7c4dff);
+    border-radius: 2px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem;
+}
+
+.team-member {
+    text-align: center;
+    padding: 2rem;
+    background-color: #252525;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    border: 1px solid #333333;
+    position: relative;
+    overflow: hidden;
+    height: 450px;
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+    z-index: 0;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border-color: #bb86fc;
+}
+
+.member-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 6px solid #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    background-color: #1e1e1e;
+}
+
+.team-member h3 {
+    color: #e0e0e0;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.team-member p {
+    color: #b0b0b0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.skill-tag {
+    background: rgba(187, 134, 252, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: #e0e0e0;
+    border: 1px solid rgba(187, 134, 252, 0.3);
+}
+
+contact-section {
+    background-color: #1e1e1e;
+    padding: 4rem;
+    border-radius: 24px;
+    margin-top: 4rem;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333333;
+}
+
+.contact-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-section h2 span {
+    color: #bb86fc;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.contact-box {
+    background: #252525;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid #333333;
+}
+
+.contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: #bb86fc;
+}
+
+.contact-box i {
+    font-size: 2rem;
+    color: #bb86fc;
+    margin-bottom: 1rem;
+}
+
+.contact-box h3 {
+    color: #e0e0e0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.contact-box p {
+    color: #b0b0b0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.contact-form {
+    background: #252525;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #333333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    background: #1e1e1e;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #bb86fc;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn-send {
+    background: #bb86fc;
+    color: #1e1e1e;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-send:hover {
+    background: #7c4dff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(124, 77, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.05;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: #bb86fc;
+}
+
+.navbar {
+    background: #1a1a1a;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #bb86fc;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #bb86fc;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .about-section,
+    .team-section,
+    .contact-section {
+        padding: 4rem;
+        margin: 4rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section,
+    .team-section,
+    .contact-section {
+        padding: 3rem;
+        margin: 3rem 1.5rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section,
+    .team-section,
+    .contact-section {
+        padding: 2rem;
+        margin: 2rem 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="logo">MovieDB</a>
+            <ul class="nav-links">
+                <!-- <li><a href="home.html">Home</a></li> -->
+                <!-- <li><a href="movies.html">Movies</a></li> -->
+                <!-- <li><a href="contact.html">Contact</a></li> -->
+                <!-- <li><a href="about.html">About</a></li> -->
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="about-section">
+        <header>
+            <h1>About MovieDB</h1>
+            <p>Your Ultimate Movie Management Platform</p>
+        </header>
+    </div>
+    
+
+    <main>
+        <main>
+            <section class="about-section">
+                <h2>Our Mission</h2>
+                <p>MovieDB is your ultimate destination for managing and exploring movies. We provide a comprehensive platform for movie enthusiasts to discover, track, and manage their favorite films. Our mission is to create the most intuitive and feature-rich movie database management system that caters to both casual viewers and dedicated cinephiles.</p>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-search"></i>
+                        <h3>Advanced Search</h3>
+                        <p>Powerful search functionality with filters for genres, years, ratings, and cast members. Find exactly what you're looking for with our intelligent search system.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-list"></i>
+                        <h3>Personalized Lists</h3>
+                        <p>Create and manage custom movie lists, watchlists, and favorites. Organize your movie collection your way with custom tags and categories.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-star"></i>
+                        <h3>Ratings & Reviews</h3>
+                        <p>Rate movies, write detailed reviews, and share your opinions. Contribute to our community-driven rating system and help others discover great films.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-bell"></i>
+                        <h3>Release Alerts</h3>
+                        <p>Stay updated with new releases and never miss a movie. Get personalized notifications for upcoming releases based on your preferences.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>Social Integration</h3>
+                        <p>Connect with fellow movie enthusiasts, share recommendations, and discover new films through your social network. Follow users with similar tastes.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Analytics Dashboard</h3>
+                        <p>Track your viewing habits with detailed statistics and insights. Visualize your movie preferences and discover patterns in your watching history.</p>
+                    </div>
+                </div>
+    
+                <div class="motive-section">
+                    <h2>Why We Created MovieDB</h2>
+                    <div class="motive-content">
+                        <div class="motive-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>The Vision</h3>
+                            <p>We envisioned a platform that would revolutionize how people interact with movies. In a world where streaming services are abundant but organization is lacking, we saw the need for a centralized system to manage and discover films.</p>
+                        </div>
+    
+                        <div class="motive-item">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <h3>The Problem We Solve</h3>
+                            <p>Many movie enthusiasts struggle with organizing their watchlists across multiple platforms, keeping track of what they've watched, and discovering new films that match their interests. MovieDB brings all these features together in one seamless experience.</p>
+                        </div>
+    
+                        <div class="motive-item">
+                            <i class="fas fa-users-gear"></i>
+                            <h3>Community-Driven Approach</h3>
+                            <p>We believe in the power of community. By creating a platform where movie lovers can share their thoughts, recommendations, and experiences, we're building more than just a database - we're creating a vibrant community of film enthusiasts.</p>
+                        </div>
+    
+                        <!-- <div class="motive-item">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Future Goals</h3>
+                            <p>Our journey doesn't stop here. We're committed to continuous innovation, adding new features, and improving the user experience based on community feedback. Our goal is to become the go-to platform for everything movie-related.</p>
+                        </div> -->
+                    </div>
+                </div>
+            </section>
+        <section class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=SS&backgroundColor=1a237e&textColor=ffffff" alt="Saksham Sekhri" class="member-img">
+                    <h3>Saksham Sekhri</h3>
+                    <div class="member-details">
+                        <div class="skills-list">
+                            <!-- <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=ST&backgroundColor=1a237e&textColor=ffffff" alt="Saksham Thakur" class="member-img">
+                    <h3>Saksham Thakur</h3>
+                    <div class="member-details">
+                        <div class="skills-list">
+                            <!-- <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">GraphQL</span> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=VI&backgroundColor=1a237e&textColor=ffffff" alt="Vivach" class="member-img">
+                    <h3>Vivach</h3>
+                    <div class="member-details">
+                        <div class="skills-list">
+                            <!-- <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">Tailwind</span>
+                            <span class="skill-tag">SASS</span>
+                            <span class="skill-tag">TypeScript</span> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=KA&backgroundColor=1a237e&textColor=ffffff" alt="Karun" class="member-img">
+                    <h3>Karun</h3>
+                    <div class="member-details">
+                        <div class="skills-list">
+                            <!-- <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Sketch</span>
+                            <span class="skill-tag">Prototyping</span>
+                            <span class="skill-tag">User Research</span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact-section">
+            <h2>Need Help? <span>Contact Us</span></h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Address</h3>
+                        <p>Chitkara University<br>Rajpura</p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <i class="fas fa-phone"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>abc@gmail.com<br>xyz@gmail.com</p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <i class="fas fa-clock"></i>
+                        <h3>Open Hours</h3>
+                        <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form method="POST" action="{{ url_for('contact') }}">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 MovieDB. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
